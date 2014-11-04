@@ -1,0 +1,26 @@
+parameters:
+    llsaws.client.factory.class:                'LLS\Bundle\AWSBundle\Factory\ClientFactory'
+    llsaws.identity.manager.class:              'LLS\Bundle\AWSBundle\Manager\IdentityManager'
+    llsaws.identity.type.user.model.class:      'LLS\Bundle\AWSBundle\Model\Identity\User'
+    llsaws.identity.type.generic.factory.class: 'LLS\Bundle\AWSBundle\Factory\GenericIdentityFactory'
+    llsaws.service.manager.class:               'LLS\Bundle\AWSBundle\Manager\ServiceManager'
+
+services:
+    llsaws.identity.manager:
+        class: %llsaws.identity.manager.class%
+
+    llsaws.service.manager:
+        class: %llsaws.identity.manager.class%
+
+    llsaws.client.factory:
+        class: %llsaws.client.factory.class%
+        arguments:
+            - @llsaws.identity.manager
+
+    llsaws.identity.type.user:
+        class: %llsaws.identity.type.generic.factory.class%
+        arguments:
+            - %llsaws.identity.type.user.model.class%
+            - @annotation_reader
+        tags:
+            - {name: llsaws.identity.type, alias: user}

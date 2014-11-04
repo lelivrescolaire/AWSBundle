@@ -1,0 +1,11 @@
+parameters:
+    llsaws.service.type.fake.model.class:      'LLS\Bundle\AWSBundle\Tests\Fixtures\FakeService'
+    llsaws.service.type.generic.factory.class: 'LLS\Bundle\AWSBundle\Factory\GenericIdentityFactory'
+
+services:
+    llsaws.service.type.fake:
+        class: %llsaws.service.type.generic.factory.class%
+        arguments:
+            - %llsaws.service.type.fake.model.class%
+        tags:
+            - {name: llsaws.service.type, alias: fake}
