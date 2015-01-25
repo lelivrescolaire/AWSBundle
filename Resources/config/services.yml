@@ -4,6 +4,7 @@ parameters:
     llsaws.identity.type.user.model.class:      'LLS\Bundle\AWSBundle\Model\Identity\User'
     llsaws.identity.type.generic.factory.class: 'LLS\Bundle\AWSBundle\Factory\GenericIdentityFactory'
     llsaws.service.manager.class:               'LLS\Bundle\AWSBundle\Manager\ServiceManager'
+    llsaws.service.type.generic.factory.class:  'LLS\Bundle\AWSBundle\Factory\GenericServiceFactory'
 
 services:
     llsaws.identity.manager:
