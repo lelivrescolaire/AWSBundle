@@ -37,7 +37,7 @@ class ClientFactory implements ClientFactoryInterface
         $identityType = $this->identityManager->getTypeName($identity);
         $factory      = $this->identityManager->getFactory($identityType);
 
-        return $class::factory($factory->toArray($identity));
+        return $class::factory($factory->export($identity));
     }
 
     /**
