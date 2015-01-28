@@ -21,6 +21,9 @@ class Configuration implements ConfigurationInterface
 
         $rootNode = $treeBuilder->root('llsaws');
         $rootNode
+            ->booleanNode('config_auto_discovery')
+                ->defaultFalse()
+            ->end()
             ->fixXmlConfig('identity')
             ->append($this->getIdentitiesNode())
             ->fixXmlConfig('service')

@@ -32,6 +32,7 @@ public function registerBundles()
 
 ```yml
 llsaws:
+    config_auto_discovery: false
     identities:
         lls_sqs_user:
             type:   user
