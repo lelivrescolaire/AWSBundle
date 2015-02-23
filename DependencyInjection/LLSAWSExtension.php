@@ -31,7 +31,7 @@ class LLSAWSExtension extends Extension
             $loader->load('services_test.yml');
         }
 
-        if (isset($config['config_auto_discovery'])) {
+        if (isset($config['config_auto_discovery']) && !defined('AWS_DISABLE_CONFIG_AUTO_DISCOVERY')) {
             define('AWS_DISABLE_CONFIG_AUTO_DISCOVERY', !$config['config_auto_discovery']);
         }
 
