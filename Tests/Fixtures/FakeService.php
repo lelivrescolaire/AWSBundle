@@ -9,11 +9,12 @@ class FakeService implements ServiceInterface
 {
     protected $identity;
     protected $clientFactory;
+    protected $something;
 
     /**
      * {@inheritDoc}
      */
-    public function __construct(IdentityInterface $identity, ClientFactoryInterface $clientFactory, \Countable $test = null)
+    public function __construct(IdentityInterface $identity, ClientFactoryInterface $clientFactory)
     {
         $this->identity      = $identity;
         $this->clientFactory = $clientFactory;
@@ -27,5 +28,17 @@ class FakeService implements ServiceInterface
     public function getClientFactory()
     {
         return $this->clientFactory;
+    }
+
+    public function setSomething($something)
+    {
+        $this->something = $something;
+
+        return $this;
+    }
+
+    public function getSomething()
+    {
+        return $this->something;
     }
 }
