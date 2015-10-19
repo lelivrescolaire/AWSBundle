@@ -22,7 +22,7 @@ class GenericServiceFactory implements ServiceFactoryInterface
     /**
      * @var array
      */
-    protected $arguments;
+    protected $calls;
 
     /**
      * Constructor
@@ -32,7 +32,7 @@ class GenericServiceFactory implements ServiceFactoryInterface
     public function __construct($classFQN)
     {
         $this->classFQN  = $classFQN;
-        $this->arguments = array_slice(func_get_args(), 1);
+        $this->calls     = array_slice(func_get_args(), 1);
     }
 
     /**
@@ -47,7 +47,22 @@ class GenericServiceFactory implements ServiceFactoryInterface
     {
         $reflection = new \ReflectionClass($this->classFQN);
 
-        return $reflection->newInstanceArgs(array($identity, $clientFactory));
+        $service = $reflection->newInstanceArgs(array($identity, $clientFactory));
+
+        $this->execCalls($service);
+
+        return $service;
+    }
+
+    protected function execCalls(ServiceInterface $service)
+    {
+        if ($this->calls) {
+            foreach ($this->calls as $definition) {
+                call_user_func_array(array($service, $definition[0]), array_slice($definition, 1));
+            }
+        }
+
+        return $this;
     }
 
     /**

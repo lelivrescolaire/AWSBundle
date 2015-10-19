@@ -25,7 +25,7 @@ class GenericServiceFactory extends test
         parent::beforeTestMethod($method);
 
         $this->fqn      = "LLS\\Bundle\\AWSBundle\\Tests\\Fixtures\\FakeService";
-        $this->instance = new Factory\GenericServiceFactory($this->fqn);
+        $this->instance = new Factory\GenericServiceFactory($this->fqn, array('setSomething', 'test'));
     }
 
     public function testClass()
@@ -55,6 +55,8 @@ class GenericServiceFactory extends test
                         ->isIdenticalTo($data[0])
                     ->object($service->getClientFactory())
                         ->isIdenticalTo($data[1])
+                    ->string($service->getSomething())
+                        ->isEqualTo('test')
         ;
     }
     
