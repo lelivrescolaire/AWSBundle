@@ -34,6 +34,13 @@ class User extends AbstractIdentity
     protected $region;
 
     /**
+     * @var string AWS API Endpoint
+     *
+     * @Identity()
+     */
+    protected $endpoint;
+
+    /**
      * Set AWS API Key
      *
      * @param string $key AWS API Key
@@ -103,5 +110,29 @@ class User extends AbstractIdentity
     public function getRegion()
     {
         return $this->region;
+    }
+
+    /**
+     * Set AWS API Endpoint
+     *
+     * @param string $endpoint AWS API Endpoint
+     *
+     * @return {$this}
+     */
+    public function setEndpoint($endpoint)
+    {
+        $this->endpoint = $endpoint;
+
+        return $this;
+    }
+
+    /**
+     * Get AWS API Endpoint
+     *
+     * @return string AWS API Endpoint
+     */
+    public function getEndpoint()
+    {
+        return $this->endpoint;
     }
 }
