@@ -4,8 +4,8 @@ parameters:
 
 services:
     llsaws.service.type.fake:
-        class: %llsaws.service.type.generic.factory.class%
+        class: "%llsaws.service.type.generic.factory.class%"
         arguments:
-            - %llsaws.service.type.fake.model.class%
+            - "%llsaws.service.type.fake.model.class%"
         tags:
             - {name: llsaws.service.type, alias: fake}
